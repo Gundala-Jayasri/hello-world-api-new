@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="implementation-flow-test-suite.xml" />
+	<munit:test name="implementation-flow-test-suite-hello-world-flowTest" doc:id="643f7f1a-4ed2-4aca-952e-31b5772ed72f" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="6abfcd46-3693-4288-bedd-4201c278c1ec" />
+			<flow-ref doc:name="Flow-ref to hello-world-flow" doc:id="0353e521-b2d8-400c-b308-e6b1d0a6ca30" name="hello-world-flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="fec8801c-d686-4004-97ef-5513e94a66bd" expression="#[payload.message]" is='#[MunitTools::equalTo("Hello MuleSoft!")]'/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

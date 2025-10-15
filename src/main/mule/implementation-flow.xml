@@ -19,19 +19,16 @@
     <flow name="hello-world-flow" doc:name="Hello World Flow">
         <http:listener config-ref="http-listener-config" path="/hello" doc:name="HTTP Listener"/>
 
-        <ee:transform doc:name="Transform Message">
-            <ee:message>
-                <ee:set-payload><![CDATA[
-                    %dw 2.0
-                    output application/json
-                    var name = attributes.queryParams.name default "World"
-                    ---
-                    { message: "Hello " ++ name ++ "!" }
-                ]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
-
-        <logger level="INFO" doc:name="Logger" message="#[payload]"/>
+        <ee:transform doc:name="Transform Message" doc:id="dfc291fc-c3e8-478e-8d30-e7b52eaef126" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[  %dw 2.0
+output application/json
+var name = attributes.queryParams.name default "World"
+---
+{ message: "Hello " ++ name ++ "!" }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="log-payload" message="#[payload]"/>
     </flow>
 
 </mule>
